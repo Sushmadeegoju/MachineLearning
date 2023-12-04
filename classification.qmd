@@ -1,0 +1,127 @@
+---
+title: Comprehensive guide to Classification in Machine Learning
+---
+
+# Introduction
+Machine learning (ML) is a field of artificial intelligence (AI) that allows computers to learn without being explicitly programmed. In other words, it gives computers the ability to learn from data and improve their performance on a specific task over time. This is achieved by feeding the computer a large dataset of labeled examples, and then allowing it to identify patterns and relationships within the data. Once the computer has learned these patterns, it can then be used to make predictions on new, unseen data.
+
+
+
+## Classification Basics
+
+Classification is a supervised machine learning method where the model tries to predict the correct label of a given input data. In classification, the model is fully trained using the training data, and then it is evaluated on test data before being used to perform prediction on new unseen data. Classification is a fundamental task in machine learning where the goal is to assign predefined labels or categories to input data based on its features. The input data is usually a set of observations, and each observation is described by a set of features. The goal of a classification algorithm is to learn a mapping from these features to a predefined set of classes or categories.
+
+## Classification Types
+
+Based on number of output classes below are the following classification types:
+
+- **Binary Classification:** In a binary classification task, the goal is to classify the input data into two mutually exclusive categories. The training data in such a situation is labeled in a binary format: true and false; positive and negative; O and 1; spam and not spam, etc. depending on the problem being tackled.
+
+    Logistic Regression and Support Vector Machines algorithms are natively designed for binary classifications. However, other algorithms such as K-Nearest Neighbors and Decision Trees can also be used for binary classification. 
+
+```{python, fig.cap="Caption for the Plot", out.width="100%", fig.show='hold'}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_blobs
+
+# Generate synthetic dataset
+X, y = make_blobs(n_samples=1000, centers=2, random_state=1)
+
+# Print dataset shape
+print("Dataset shape:", X.shape, y.shape)
+
+# Summarize observations by class label
+class_counts = np.bincount(y)
+print("Class counts:", class_counts)
+
+# Print first few examples
+for i in range(10):
+    print("Example", i + 1, ":", X[i], y[i])
+
+# Plot the dataset and color the points by class label
+for label, count in enumerate(class_counts):
+    row_indices = np.where(y == label)[0]
+    plt.scatter(X[row_indices, 0], X[row_indices, 1], label=f"Class {label}")
+
+plt.legend()
+plt.show()
+```
+
+- **Multi-class Classification:** The multi-class classification, on the other hand, has at least two mutually exclusive class labels, where the goal is to predict to which class a given input example belongs to. Most of the binary classification algorithms can be also used for multi-class classification. These algorithms include but are not limited to:
+Random Forest, Naive Bayes, K-Nearest Neighbors, Gradient Boosting,SVM and Logistic Regression.
+
+```{python, fig.cap="Caption for the Plot", out.width="100%", fig.show='hold'}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generate synthetic dataset
+X, y = make_blobs(n_samples=1000, centers=3, random_state=1)
+
+# Print dataset shape
+print("Dataset shape:", X.shape, y.shape)
+
+# Summarize observations by class label
+class_counts = np.bincount(y)
+print("Class counts:", class_counts)
+
+# Print first few examples
+for i in range(10):
+    print("Example", i + 1, ":", X[i], y[i])
+
+# Plot the dataset and color the points by class label
+unique_classes = np.unique(y)
+for label in unique_classes:
+    row_indices = np.where(y == label)[0]
+    plt.scatter(X[row_indices, 0], X[row_indices, 1], label=f"Class {label}")
+
+plt.legend()
+plt.show()
+```
+
+- **Multi-label Classification:** In multi-label classification tasks, we try to predict 0 or more classes for each input example. It is not possible to use multi-class or binary classification models to perform multi-label classification. However, most algorithms used for those standard classification tasks have their specialized versions for multi-label classification.
+
+```{python, fig.cap="Caption for the Plot", out.width="100%", fig.show='hold'}
+
+# example of a multi-label classification task
+from sklearn.datasets import make_multilabel_classification
+# define dataset
+X, y = make_multilabel_classification(n_samples=1000, n_features=2, n_classes=3, n_labels=2, random_state=1)
+# summarize dataset shape
+print(X.shape, y.shape)
+# summarize first few examples
+for i in range(10):
+ print(X[i], y[i])
+```
+
+There are many different types of classification algorithms, each with its own strengths and weaknesses. Some of the most common classification algorithms include:
+
+- **Logistic regression:** This is a simple but powerful algorithm that is often used as a baseline for other algorithms.
+- **Naive Byes**: Naive Bayes determines whether a data point falls into a particular category. It can be used to classify phrases or words in text analysis as either falling within a predetermined classification or not.
+- **Decision trees:** This algorithm builds a tree-like structure that represents the decision-making process used to classify data points.
+- **Support vector machines (SVMs):** This algorithm finds a hyperplane that best separates the data points belonging to different classes.
+- **K-nearest neighbors (KNN):** This algorithm classifies data points based on the class of their nearest neighbors in the training data.
+- **Neural networks:** This type of algorithm is inspired by the human brain and can learn complex patterns in data.
+
+## Use Cases Of Classification Algorithms
+
+Classification algorithms are the workhorses of machine learning, powering a vast array of applications across various domains. Here are some compelling use cases:
+
+1. Spam filtering: This classic application uses classification to sort incoming emails as spam or not spam. Algorithms learn from labeled examples and identify patterns that distinguish genuine messages from unwanted ones.
+
+2. Fraud detection: Banks and financial institutions rely heavily on classification to detect fraudulent transactions. By analyzing spending patterns, account behavior, and other factors, algorithms can flag suspicious activity in real-time, protecting users and preventing financial losses.
+
+3. Image recognition: From self-driving cars identifying objects on the road to social media platforms tagging faces in photos, image recognition leverages classification to categorize and interpret visual data.
+
+4. Medical diagnosis: While not a substitute for professional judgment, classification algorithms can assist doctors in diagnosing diseases by analyzing medical images, patient data, and symptoms. This can lead to faster and more accurate diagnoses, improving patient care.
+
+5. Customer segmentation: Businesses use classification to group customers based on their demographics, purchase history, and online behavior. This helps tailor marketing campaigns, suggest relevant products, and personalize the customer experience.
+
+6. Content moderation: Social media platforms and online forums utilize classification to identify and remove harmful content like hate speech, bullying, and misinformation. This fosters a safer and more inclusive online environment.
+
+7. Product recommendation: E-commerce platforms recommend products based on your past purchases and browsing history. Classification algorithms analyze this data and predict what you're most likely to be interested in, leading to increased sales and customer satisfaction.
+
+8. Sentiment analysis: Analyzing reviews, tweets, and social media posts, classification algorithms can gauge the public sentiment towards a brand, product, or event. This valuable feedback helps businesses improve their offerings and communication strategies.
+
+9. Risk assessment: Insurance companies use classification to assess risks and determine premiums. By analyzing factors like age, health data, and driving history, algorithms can predict the likelihood of claims, enabling fairer and more personalized insurance plans.
+
+10. Anomaly detection: From monitoring industrial machinery for potential failures to identifying network intrusions, classification algorithms can learn what's "normal" and detect deviations that might indicate anomalies or security threats.

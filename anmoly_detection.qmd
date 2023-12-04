@@ -1,0 +1,104 @@
+---
+title: Anamoly detection with Machine Learning Overview
+---
+
+# Introduction - What is an Anomaly?
+Anomaly is a data point that deviates significantly from the rest of the data. In other words, it's an outlier, an oddball, a data point that doesn't seem to fit in.
+
+# What is Anomaly Detection?
+
+Anomaly detection is like shining a spotlight on the unexpected patterns and outliers within a dataset. It separates the regular data points from the abnormal ones, allowing analysts to focus on understanding the underlying reasons or potential problems linked to these anomalies. Applications of anomaly detection can be found in many fields, such as fraud detection, network security, preventive maintenance, healthcare monitoring, and quality control.
+
+ While traditional methods can identify some anomalies, they often fall short when dealing with complex, high-dimensional data or nuanced patterns. Here's why ML shines in anomaly detection:
+
+ 1.**Handling Complexity:** Real-world data is messy. It's a tangled web of interconnected variables, subtle relationships, and hidden dependencies. Traditional methods, like defining thresholds or comparing to averages, struggle to capture these complexities. ML models, however, can learn these intricate patterns and identify anomalies even when they're disguised within the noise.
+
+ 2.**Adapting to Change:** Data isn't static. It constantly evolves, with new patterns emerging and old ones fading. Traditional methods are rigid, requiring manual adjustments to stay relevant. ML models, however, are self-learning. They continuously update their understanding of "normal" as new data arrives, ensuring they stay ahead of the curve and catch even the most fleeting anomalies.
+
+ 3.**Uncovering Hidden Insights:** Traditional methods often treat anomalies as isolated data points. ML goes beyond just identifying them. By analyzing the context and surrounding data, it can uncover the underlying reasons behind the anomaly. This deeper understanding allows us to not just patch the leak, but also prevent future occurrences and even gain valuable insights into the system's behavior.
+
+ 4.**Scaling with Volume:** As data volumes explode, traditional methods become unwieldy and computationally expensive. ML models, on the other hand, thrive on large datasets. They can analyze vast amounts of data in real-time, making them ideal for applications like fraud detection in high-frequency transactions or anomaly detection in massive sensor networks.
+
+ 5.**Automating the Detective Work:** Anomaly detection can be tedious and time-consuming. ML automates this process, freeing up human analysts to focus on more strategic tasks. The models continuously monitor the data, tirelessly searching for anomalies and raising alerts, allowing analysts to intervene only when necessary.
+
+## Anomaly Detection Methods
+
+There are many different anomaly detection methods and strategies. The following list of approaches for finding anomalies is typical:
+
+1. **Statistical Methods:**This section accurately explains the core principle: identifying deviations from expected distributions. Examples like Z-score and Gaussian modeling are appropriate, but consider adding non-parametric tests like Kolmogorov-Smirnov for non-normal data. Limitations with these methods are they work well for univariate data or simple relationships, but struggle with complex, multivariate data.
+
+ 2. **Machine Learning-based Methods:**This section effectively contrasts supervised and unsupervised learning approaches.Examples like isolation forests and one-class SVMs are excellent choices. Consider adding deep anomaly detection models like LSTMs for time series data. Limitations with these methods are ML models require careful training data preparation and hyperparameter tuning to avoid overfitting or underfitting.
+
+ 3. **Time-Series Analysis:**This section accurately highlights the need for specialized methods for time series data. Examples like moving averages, exponential smoothing, and ARIMA models are well-suited.Consider mentioning advanced methods like seasonal ARIMA (SARIMA) for periodic patterns and Prophet for forecasting and anomaly detection.
+
+ 4. **Clustering-based Methods:**This section clearly explains the concept of identifying outliers based on clustering.Examples like k-means and DBSCAN are appropriate. Consider adding hierarchical clustering for identifying anomalies at different granularities.Limitations with these methods are clustering can be sensitive to noise and choosing the optimal number of clusters can be challenging.
+
+ 5. **Deep Learning-based Methods:**This section effectively highlights the potential of deep learning for complex patterns.Autoencoders as an example work well. Consider mentioning other relevant architectures like convolutional neural networks (CNNs) for image data and recurrent neural networks (RNNs) for sequential data.Limitations with these methods are deep learning models can be computationally expensive and require large amounts of training data.
+
+ 6. **Ensemble Methods:**This section effectively explains the idea of combining different methods for better performance.Mention specific examples of ensemble methods like bagging and boosting used in anomaly detection. Highlight the benefit of improved robustness and reduced false positives.
+
+## Uses of Anamoly Detection
+
+Here are just a few areas where anomaly detection flexes its muscles:
+
+ 1. **Financial Fraud:** Credit card transactions, loan applications, and stock market activity – the world of finance is rife with potential fraud. Anomaly detection acts as a hawk-eyed watchdog, identifying suspicious patterns like sudden spikes in spending, unusual account behavior, or coordinated market manipulation. By catching these anomalies early, we can save millions, safeguard investments, and bring bad actors to justice.
+
+ 2. **Cybersecurity:** Our digital world is constantly under siege from malicious actors. Anomaly detection stands guard at the gates, analyzing network traffic, login attempts, and system activity. From identifying DDoS attacks to spotting malware infiltration attempts, it acts as a silent guardian, protecting our data, our systems, and our privacy.
+
+ 3. **Healthcare:** Anomaly detection becomes a lifesaver in the healthcare arena. By analyzing medical data like patient vitals, lab results, and imaging scans, it can identify early signs of illness, potential drug interactions, or even rare diseases. This early detection empowers doctors to intervene swiftly, potentially saving lives and improving patient outcomes.
+
+ 4. **Manufacturing and Equipment Maintenance:** Imagine a factory where machines hum harmoniously. Anomaly detection becomes a conductor, listening for subtle shifts in rhythm, vibrations, or energy consumption. By identifying equipment on the verge of failure, it prevents costly breakdowns, ensures production efficiency, and even predicts maintenance needs before they arise.
+
+ 5. **Marketing and Customer Service:** In the ever-competitive world of business, understanding your customers is key. Anomaly detection analyzes website traffic, purchase patterns, and social media sentiment. It identifies unusual buying behavior, pinpoints customer churn risk, and even uncovers hidden trends. This empowers businesses to personalize marketing campaigns, deliver exceptional customer service, and stay ahead of the competition.
+
+## Anamoly Detection with Example
+
+It is challenging to find data anomalies, especially when dealing with large datasets. Fortunately, the sklearn Python module has many built-in algorithms to help us solve this problem, such as Isolation Forests. Isolation Forest is an unsupervised learning algorithm that identifies anomalies by isolating outliers in the data based on the Decision Tree Algorithm. It separates the outliers by randomly selecting a feature from the given set of features and then selecting a split value between the max and min values. This random partitioning of features will produce shorter paths in trees for the anomalous data points, thus distinguishing them from the rest of the data.
+
+Let’s use the sklearn Isolation Forest implementation on the same broken dataset to implement anomaly detection with PythonLets consider 
+
+```{python, fig.cap="Caption for the Plot", out.width="100%", fig.show='hold'}
+# importing the isloation forest
+from sklearn.ensemble import IsolationForest
+# copying dataset
+isf_dataset = broken_dataset.copy()
+# initializing Isolation Forest
+clf = IsolationForest(max_samples='auto', contamination=0.01)
+# training
+clf.fit(isf_dataset)
+# finding anomalies
+isf_dataset['Anomaly'] = clf.predict(isf_dataset)
+# saving anomalies to a separate dataset for visualization purposes
+anomalies = isf_dataset.query('Anomaly == -1')
+
+import plotly.graph_objects as go
+b1 = go.Scatter(x=isf_dataset.index.astype(str),
+                y=isf_dataset['Sales'],
+                name="Dataset",
+                mode='markers'
+               )
+b2 = go.Scatter(x=anomalies.index.astype(str),
+                y=anomalies['Sales'],
+                name="Anomalies",
+                mode='markers',
+                marker=dict(color='red', size=6,
+                            line=dict(color='red', width=1))
+               )
+layout = go.Layout(
+    title="Isolation Forest results",
+    yaxis_title='Sales',
+    xaxis_title='Date',
+    hovermode='closest'
+)
+data = [b1, b2]
+fig = go.Figure(data=data, layout=layout)
+fig.show()
+```
+
+## Conclusion
+
+Finally, anomaly detection shines by harnessing the power of machine learning to unearth the hidden stories within data. Whether it's uncovering fraudulent transactions, predicting equipment failures, or even detecting rare diseases, its applications span countless fields. Both supervised and unsupervised learning methods play a crucial role, with Isolation Forests excelling at isolating individual outliers and One-Class SVMs adept at identifying patterns deviating from normality. Autoencoders and Gaussian Mixture Models also join the arsenal, each with its own strengths in revealing hidden anomalies. Statistical methods and rule-based approaches offer valuable tools as well, showcasing the versatility of anomaly detection.
+
+ But the journey doesn't end here. As data volumes explode and patterns become increasingly complex, the quest for ever-more sophisticated anomaly detection methods continues. Time-series data demands specialized techniques like ARIMA and LSTMs, while deep learning models push the boundaries of what's possible.
+
+ So, embrace the anomaly, delve into its mysteries, and unlock the hidden potential it holds. The future of anomaly detection is bright, and it's a future where your insights can make a real difference.

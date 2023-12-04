@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Probability Theory and Random Variables</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="probability_theory_and_random_variables_files/libs/clipboard/clipboard.min.js"></script>
+<script src="probability_theory_and_random_variables_files/libs/quarto-html/quarto.js"></script>
+<script src="probability_theory_and_random_variables_files/libs/quarto-html/popper.min.js"></script>
+<script src="probability_theory_and_random_variables_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="probability_theory_and_random_variables_files/libs/quarto-html/anchor.min.js"></script>
+<link href="probability_theory_and_random_variables_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="probability_theory_and_random_variables_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="probability_theory_and_random_variables_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="probability_theory_and_random_variables_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="probability_theory_and_random_variables_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Probability Theory and Random Variables</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="probablity-theory" class="level2">
+<h2 class="anchored" data-anchor-id="probablity-theory">Probablity Theory</h2>
+<p>Probability theory is like the crystal ball of mathematics, helping us predict the likelihood of events occurring. The magic number always lies between 0 and 1, inclusive, where 0 means “impossible” and 1 means “certain.”</p>
+<section id="basic-concepts" class="level3">
+<h3 class="anchored" data-anchor-id="basic-concepts">Basic Concepts</h3>
+<ul>
+<li><strong>Sample Space:</strong> The set of all possible outcomes of a random experiment. For example, the possible outcome of tossing a coin is {heads, tails}.</li>
+<li><strong>Event:</strong> A subset of the sample space, representing a specific outcome or a combination of outcomes. For example, the event of tossing a coin is {heads}.</li>
+<li><strong>Probability:</strong> Probability is a numerical measure between 0 and 1 indicating the likelihood of an event happening. A probability of 0 denotes impossibility, while a probability of 1 signifies certainty for the occurrence of the event.</li>
+</ul>
+</section>
+<section id="example-picking-balls-from-bags" class="level3">
+<h3 class="anchored" data-anchor-id="example-picking-balls-from-bags">Example: Picking Balls from Bags</h3>
+<p>To understand this clearly, Let’s consider a scenario involving two bags, A and B, each holding 10 red and 10 black balls.</p>
+<p>Consider the task of randomly picking a ball without peeking into the bag. The probability (denoted as P) of selecting a red ball can be calculated as:</p>
+<p><span class="math inline">\(P(\text{Red ball}) = P(\text{Bag A}) \cdot P(\text{Red ball | Bag A}) + P(\text{Bag B}) \cdot P(\text{Red ball | Bag B})\)</span></p>
+<p>The idea of conditional probability <span class="math inline">\((P(\frac{\text{A}}{\text{B}}))\)</span>, which calculates the probability of event A given that event B has occurred.</p>
+<p>Let’s break it down:</p>
+<ul>
+<li><span class="math inline">\(P(\text{Bag A}) = \frac{1}{2}\)</span> because we have two bags, and we need to choose Bag A.</li>
+<li><span class="math inline">\(P(\text{Red ball | Bag A})\)</span> is the probability of drawing a red ball given Bag A, which is <span class="math inline">\(\frac{10}{20}\)</span> or <span class="math inline">\(\frac{1}{2}\)</span>.</li>
+</ul>
+<p><span class="math inline">\(P(\text{Red Ball}) = \frac{1}{2} \cdot \frac{1}{2} + \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{2}\)</span></p>
+<p>Similarly, you can explore finding the probability of drawing a black ball or the probability of drawing two consecutive red balls after transferring one black ball from Bag A to Bag B.</p>
+</section>
+<section id="conditional-probability-and-intersection" class="level3">
+<h3 class="anchored" data-anchor-id="conditional-probability-and-intersection">Conditional Probability and Intersection</h3>
+<p>The concept of conditional probability involves finding the probability of event A given that event B has already occurred. In set theory, this is denoted as the “Intersection” symbol (∩) between A and B.</p>
+<p><span class="math inline">\(P(A | B) = \frac{P(A \cap B)}{P(B)}\)</span></p>
+<p>Here, the numerator represents the probability of both events A and B occurring, divided by the probability of event B.</p>
+</section>
+</section>
+<section id="random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="random-variables">Random Variables</h2>
+<p>In probability theory, <strong>random variables</strong> play a crucial role in quantifying uncertainty associated with the outcomes of random experiments. Let’s explore the concept of random variables through a concrete example.</p>
+<section id="example-tossing-two-coins" class="level3">
+<h3 class="anchored" data-anchor-id="example-tossing-two-coins">Example: Tossing Two Coins</h3>
+<p>Consider the classic experiment of tossing two fair coins, where each coin can land either heads (H) or tails (T). The sample space for this experiment is {HH, HT, TH, TT}.</p>
+<p>Now, let’s define a random variable <code>X</code> that maps the outcomes of this sample space to real numbers:</p>
+<ul>
+<li>X(HH) = 3</li>
+<li>X(HT) = 1</li>
+<li>X(TH) = 2</li>
+<li>X(TT) = 0</li>
+</ul>
+<p>Here, <code>X</code> assigns the values 3, 1, 2, and 0 to the outcomes HH, HT, TH, and TT, respectively.</p>
+</section>
+<section id="probability-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="probability-analysis">Probability Analysis</h3>
+<p>Once we’ve defined a random variable, we can apply probability theory to analyze the uncertainty associated with its outcomes. For example:</p>
+<ul>
+<li><span class="math inline">\(P(X = 1) = \frac{1}{4}\)</span></li>
+<li><span class="math inline">\(P(0 \leq X \leq 2) = \frac{3}{4}\)</span></li>
+</ul>
+<p>This allows us to quantify the likelihood of specific values or ranges for the random variable.</p>
+</section>
+<section id="types-of-random-variables" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-random-variables">Types of Random Variables</h3>
+<section id="discrete-random-variable" class="level4">
+<h4 class="anchored" data-anchor-id="discrete-random-variable">1. Discrete Random Variable</h4>
+<p>A discrete random variable takes on a countable number of distinct values, often represented by integers or a finite set of values. Examples include:</p>
+<ul>
+<li>The number of heads obtained when flipping a coin.</li>
+<li>The number of cars passing through a toll booth in an hour.</li>
+<li>The outcome of rolling a six-sided die.</li>
+</ul>
+</section>
+<section id="continuous-random-variable" class="level4">
+<h4 class="anchored" data-anchor-id="continuous-random-variable">2. Continuous Random Variable</h4>
+<p>In contrast, a continuous random variable can take on any value within a specified range or interval, typically represented by real numbers. Examples include:</p>
+<ul>
+<li>The height of a person.</li>
+<li>The time it takes for a car to travel a certain distance.</li>
+<li>Temperature recorded at a specific time.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="probability-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="probability-distribution">Probability Distribution</h2>
+<p>Probability distribution refers to a mathematical function or model that describes the likelihood of different outcomes or events occurring. It provides a systematic way to assign probabilities to various possible outcomes, allowing us to understand the relative likelihood of each outcome.</p>
+<p>In simpler terms, a probability distribution provides a complete summary of the probabilities of all possible values that the random variable can take.</p>
+<section id="dice-example" class="level3">
+<h3 class="anchored" data-anchor-id="dice-example">Dice Example</h3>
+<p>In the dice example, the probability distribution of (X) is a uniform distribution, as all outcomes have equal probabilities. It can be represented as follows:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>X</th>
+<th>P(X)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1/6</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1/6</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>1/6</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>1/6</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>1/6</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>1/6</td>
+</tr>
+</tbody>
+</table>
+<p>You might think that the distribution should be represented graphically rather than in a tabular format. While this is true for larger or continuous datasets, the tabular format is suitable for a small number of outcomes.</p>
+</section>
+<section id="probability-distribution-function" class="level3">
+<h3 class="anchored" data-anchor-id="probability-distribution-function">Probability Distribution Function</h3>
+<p>The probability distribution function for a discrete random variable is known as the Probability Mass Function (PMF), whereas for a continuous random variable, it is known as the Probability Density Function (PDF).</p>
+</section>
+<section id="probability-mass-function-pmf" class="level3">
+<h3 class="anchored" data-anchor-id="probability-mass-function-pmf">Probability Mass Function (PMF)</h3>
+<p>The PMF calculation is simple and straightforward, based on the counting principle. Since discrete random variables are countable, the PMF is calculated as:</p>
+<p><span class="math inline">\(PMF=\frac {Random Variable Outcome}{Total outcomes in the sample space}\)</span> ​<br>
+For example, when a four-sided dice is rolled twice, the probability of the sum of two rolled dice and the PMF would be:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Sum</th>
+<th>PMF</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>1/16</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>2/16</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>3/16</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>4/16</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>3/16</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>2/16</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>1/16</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="probability-density-function-pdf" class="level3">
+<h3 class="anchored" data-anchor-id="probability-density-function-pdf">Probability Density Function (PDF)</h3>
+<p>The PDF is used for continuous random variables. Unlike the PMF, which gives probabilities directly, the PDF represents the relative likelihood of the random variable falling within a given range or interval.</p>
+<p>Two prime reasons for this are:</p>
+<ul>
+<li>Continuous variables have an infinite number of possible values within a range or interval (e.g., distance).</li>
+<li>The probability assigned to any single point is infinitesimally small or close to zero.</li>
+</ul>
+<p>Hence, to find the probability of any value in a continuous random variable, we determine the probability of the variable falling within a specific range.</p>
+</section>
+</section>
+<section id="introducing-naive-bayes-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="introducing-naive-bayes-theorem">Introducing Naive Bayes Theorem</h2>
+<p>Now, let’s take our exploration further by introducing the Naive Bayes theorem. Naive Bayes is a powerful classification algorithm rooted in probability theory. It is particularly useful when dealing with datasets that exhibit certain dependencies between features.</p>
+<p>Naive Bayes is a statistical classification technique based on Bayes Theorem. It is one of the simplest supervised learning algorithms. Naive Bayes classifier is the fast, accurate and reliable algorithm. Naive Bayes classifiers have high accuracy and speed on large datasets.</p>
+<section id="what-is-naive-bayes-classifier" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-naive-bayes-classifier">What is Naive Bayes Classifier?</h3>
+<p>Naive Bayes classifier assumes that the effect of a particular feature in a class is independent of other features. For example, a loan applicant is desirable or not depending on his/her income, previous loan and transaction history, age, and location. Even if these features are interdependent, these features are still considered independently. This assumption simplifies computation, and that’s why it is considered as naive. This assumption is called class conditional independence.</p>
+<ul>
+<li>P(h): the probability of hypothesis h being true (regardless of the data). This is known as the prior probability of h.</li>
+<li>P(D): the probability of the data (regardless of the hypothesis). This is known as the prior probability.</li>
+<li>P(h|D): the probability of hypothesis h given the data D. This is known as posterior probability.</li>
+<li>P(D|h): the probability of data d given that the hypothesis h was true. This is known as posterior probability.</li>
+</ul>
+</section>
+<section id="applying-naive-bayes-to-a-practical-example" class="level3">
+<h3 class="anchored" data-anchor-id="applying-naive-bayes-to-a-practical-example">Applying Naive Bayes to a Practical Example</h3>
+<p>Let’s consider an example dataset generated using <code>make_classification</code> from Scikit-Learn. This dataset has six features, three classes, and a total of 800 samples. We’ll visualize the dataset to get an initial understanding.</p>
+<p>In the plot, each point represents a sample with two informative features, and colors represent different classes. This synthetic dataset will help us understand the workings of Naive Bayes.</p>
+<section id="generating-the-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="generating-the-dataset">Generating the Dataset</h4>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_classification(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    n_features<span class="op">=</span><span class="dv">6</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    n_classes<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    n_samples<span class="op">=</span><span class="dv">800</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    n_informative<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    n_clusters_per_class<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We will use matplotlib.pyplot’s <code>scatter</code> function to visualize the dataset.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y, marker<span class="op">=</span><span class="st">"*"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="probability_theory_and_random_variables_files/figure-html/cell-3-output-1.png" width="569" height="411"></p>
+</div>
+</div>
+<p>We can see that there are three types of target labels, and we will be training a multiclass classification model.</p>
+</section>
+<section id="data-splitting-and-training" class="level4">
+<h4 class="anchored" data-anchor-id="data-splitting-and-training">Data Splitting and Training</h4>
+<p>We’ll split the dataset into training and testing sets and train a Gaussian Naive Bayes model using the training data.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.33</span>, random_state<span class="op">=</span><span class="dv">125</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="model-building-and-training" class="level4">
+<h4 class="anchored" data-anchor-id="model-building-and-training">Model Building and Training</h4>
+<p>Build a generic Gaussian Naive Bayes and train it on a training dataset. After that, feed a random test sample to the model to get a predicted value.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> GaussianNB</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a Gaussian Classifier</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> GaussianNB()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Model training</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict Output</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>predicted <span class="op">=</span> model.predict([X_test[<span class="dv">6</span>]])</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Actual Value:"</span>, y_test[<span class="dv">6</span>])</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Predicted Value:"</span>, predicted[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Actual Value: 0
+Predicted Value: 0</code></pre>
+</div>
+</div>
+</section>
+<section id="model-evaluation" class="level4">
+<h4 class="anchored" data-anchor-id="model-evaluation">Model Evaluation</h4>
+<p>We will not evolve the model on an unseen test dataset. First, we will predict the values for the test dataset and use them to calculate accuracy and F1 score.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> (</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    accuracy_score,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    confusion_matrix,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    ConfusionMatrixDisplay,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    f1_score,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>accuray <span class="op">=</span> accuracy_score(y_pred, y_test)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> f1_score(y_pred, y_test, average<span class="op">=</span><span class="st">"weighted"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy:"</span>, accuray)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"F1 Score:"</span>, f1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy: 0.8484848484848485
+F1 Score: 0.8491119695890328</code></pre>
+</div>
+</div>
+<p>To visualize the Confusion matrix, we will use <code>confusion_matrix</code> to calculate the true positives and true negatives and <code>ConfusionMatrixDisplay</code> to display the confusion matrix with the labels.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, y_pred, labels<span class="op">=</span>labels)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>labels)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>disp.plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="probability_theory_and_random_variables_files/figure-html/cell-7-output-1.png" width="496" height="429"></p>
+</div>
+</div>
+<p>As you can see, our model has performed well, and we can still improve this by scaling, cross-validations, preprocessing and hyperparameter optimization.</p>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>In this blog post, we’ve explored the basics of probability theory and random variables and the workings of Naive Bayes using a practical example. We started with dataset creation, splitting it into training and testing sets, training a Naive Bayes model, making predictions, and evaluating the model’s performance.</p>
+<p>Naive Bayes is a powerful algorithm, particularly useful for classification tasks, and its simplicity and efficiency make it a popular choice in various machine learning applications. Feel free to experiment with different datasets and see how Naive Bayes performs in different scenarios.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
