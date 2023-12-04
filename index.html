@@ -4,29 +4,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Page Title</title>
+  <title>ML Blogs</title>
 
   <!-- Add your CSS styles here -->
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: rgb(240, 240, 252);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .header {
+      background-color: #232f3e; /* Amazon header color */
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-title {
+      font-size: 18px;
+      margin-left: 10px;
+      color: white;
     }
 
     .tab-container {
       display: flex;
       justify-content: space-around;
-      margin: 20px;
+      background-color: #232f3e; /* Amazon header color */
+      margin: 10px 0;
+      padding: 5px;
+      border-radius: 5px;
     }
 
     .tab {
       padding: 10px;
       cursor: pointer;
-      border: 1px solid #ccc;
+      /* border: 1px solid #ccc; */
       border-radius: 5px;
+      color: white;
     }
 
     .tab:hover {
-      background-color: #f0f0f0;
+      background-color: #34495e; /* Darker shade for hover effect */
+    }
+
+    .tab.active {
+      /* background-color: #4CAF50; Green color for active tab */
     }
 
     .tab-content {
@@ -37,51 +64,51 @@
 
 <body>
 
-  <div class="tab-container">
-    <div class="tab" onclick="showTab('anmoly_detection')">Anomaly Detection</div>
-    <div class="tab" onclick="showTab('clustering')">Clustering</div>
-    <div class="tab" onclick="showTab('linear_and_nonlinear_regression')">Regression</div>
-    <div class="tab" onclick="showTab('probability_theory_and_random_variables')">Probability Theory</div>
-    <div class="tab" onclick="showTab('classification')">Classification</div>
+  <div class="header">
+    <p class="header-title">ML Blogs</p>
+    <div class="tab-container">
+      <div class="tab active" onclick="showTab('anmoly_detection')">Anomaly Detection</div>
+      <div class="tab" onclick="showTab('classification')">Classification</div>
+      <div class="tab" onclick="showTab('clustering')">Clustering</div>
+      <div class="tab" onclick="showTab('linear_and_nonlinear_regression')">Regression</div>
+      <div class="tab" onclick="showTab('probability_theory_and_random_variables')">Probability Theory</div>    
+    </div>
   </div>
 
-  <div id="anmoly_detection" class="tab-content">
-    <!-- Include content from anmoly_detection.html or anmoly_detection.qmd here -->
-    <!-- For example, use an iframe to embed the HTML content -->
-    <iframe src="anmoly_detection.html" width="100%" height="600px"></iframe>
-  </div>
-
-  <div id="clustering" class="tab-content">
-    <!-- Include content from clustering.html or clustering.qmd here -->
-    <iframe src="clustering.html" width="100%" height="600px"></iframe>
-  </div>
-
-  <div id="linear_and_nonlinear_regression" class="tab-content">
-    <!-- Include content from linear_and_nonlinear_regression.html or linear_and_nonlinear_regression.qmd here -->
-    <iframe src="linear_and_nonlinear_regression.html" width="100%" height="600px"></iframe>
-  </div>
-
-  <div id="probability_theory_and_random_variables" class="tab-content">
-    <!-- Include content from probability_theory_and_random_variables.html or probability_theory_and_random_variables.qmd here -->
-    <iframe src="probability_theory_and_random_variables.html" width="100%" height="600px"></iframe>
+  <div id="anmoly_detection" class="tab-content" style="display: block;">
+    <iframe src="anmoly_detection.html" width="100%" height="800px"></iframe>
   </div>
 
   <div id="classification" class="tab-content">
-    <!-- Include content from classification.html or classification.qmd here -->
-    <iframe src="classification.html" width="100%" height="600px"></iframe>
+    <iframe src="classification.html" width="100%" height="800px"></iframe>
+  </div>
+
+  <div id="clustering" class="tab-content">
+    <iframe src="clustering.html" width="100%" height="800px"></iframe>
+  </div>
+
+  <div id="linear_and_nonlinear_regression" class="tab-content">
+    <iframe src="linear_and_nonlinear_regression.html" width="100%" height="800px"></iframe>
+  </div>
+
+  <div id="probability_theory_and_random_variables" class="tab-content">
+    <iframe src="probability_theory_and_random_variables.html" width="100%" height="800px"></iframe>
   </div>
 
   <script>
     function showTab(tabId) {
-      // Hide all tabs
-      const tabs = document.querySelectorAll('.tab-content');
+      const tabs = document.querySelectorAll('.tab');
       tabs.forEach(tab => {
-        tab.style.display = 'none';
+        tab.classList.remove('active');
       });
 
-      // Show the selected tab
       const selectedTab = document.getElementById(tabId);
       if (selectedTab) {
+        selectedTab.classList.add('active');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(tabContent => {
+          tabContent.style.display = 'none';
+        });
         selectedTab.style.display = 'block';
       }
     }

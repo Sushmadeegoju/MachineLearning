@@ -11,15 +11,15 @@ Anomaly detection is like shining a spotlight on the unexpected patterns and out
 
  While traditional methods can identify some anomalies, they often fall short when dealing with complex, high-dimensional data or nuanced patterns. Here's why ML shines in anomaly detection:
 
- 1.**Handling Complexity:** Real-world data is messy. It's a tangled web of interconnected variables, subtle relationships, and hidden dependencies. Traditional methods, like defining thresholds or comparing to averages, struggle to capture these complexities. ML models, however, can learn these intricate patterns and identify anomalies even when they're disguised within the noise.
+ 1. **Handling Complexity:** Real-world data is messy. It's a tangled web of interconnected variables, subtle relationships, and hidden dependencies. Traditional methods, like defining thresholds or comparing to averages, struggle to capture these complexities. ML models, however, can learn these intricate patterns and identify anomalies even when they're disguised within the noise.
 
- 2.**Adapting to Change:** Data isn't static. It constantly evolves, with new patterns emerging and old ones fading. Traditional methods are rigid, requiring manual adjustments to stay relevant. ML models, however, are self-learning. They continuously update their understanding of "normal" as new data arrives, ensuring they stay ahead of the curve and catch even the most fleeting anomalies.
+ 2. **Adapting to Change:** Data isn't static. It constantly evolves, with new patterns emerging and old ones fading. Traditional methods are rigid, requiring manual adjustments to stay relevant. ML models, however, are self-learning. They continuously update their understanding of "normal" as new data arrives, ensuring they stay ahead of the curve and catch even the most fleeting anomalies.
 
- 3.**Uncovering Hidden Insights:** Traditional methods often treat anomalies as isolated data points. ML goes beyond just identifying them. By analyzing the context and surrounding data, it can uncover the underlying reasons behind the anomaly. This deeper understanding allows us to not just patch the leak, but also prevent future occurrences and even gain valuable insights into the system's behavior.
+ 3. **Uncovering Hidden Insights:** Traditional methods often treat anomalies as isolated data points. ML goes beyond just identifying them. By analyzing the context and surrounding data, it can uncover the underlying reasons behind the anomaly. This deeper understanding allows us to not just patch the leak, but also prevent future occurrences and even gain valuable insights into the system's behavior.
 
- 4.**Scaling with Volume:** As data volumes explode, traditional methods become unwieldy and computationally expensive. ML models, on the other hand, thrive on large datasets. They can analyze vast amounts of data in real-time, making them ideal for applications like fraud detection in high-frequency transactions or anomaly detection in massive sensor networks.
+ 4. **Scaling with Volume:** As data volumes explode, traditional methods become unwieldy and computationally expensive. ML models, on the other hand, thrive on large datasets. They can analyze vast amounts of data in real-time, making them ideal for applications like fraud detection in high-frequency transactions or anomaly detection in massive sensor networks.
 
- 5.**Automating the Detective Work:** Anomaly detection can be tedious and time-consuming. ML automates this process, freeing up human analysts to focus on more strategic tasks. The models continuously monitor the data, tirelessly searching for anomalies and raising alerts, allowing analysts to intervene only when necessary.
+ 5. **Automating the Detective Work:** Anomaly detection can be tedious and time-consuming. ML automates this process, freeing up human analysts to focus on more strategic tasks. The models continuously monitor the data, tirelessly searching for anomalies and raising alerts, allowing analysts to intervene only when necessary.
 
 ## Anomaly Detection Methods
 
@@ -59,40 +59,32 @@ Let’s use the sklearn Isolation Forest implementation on the same broken datas
 
 ```{python, fig.cap="Caption for the Plot", out.width="100%", fig.show='hold'}
 # importing the isloation forest
-from sklearn.ensemble import IsolationForest
-# copying dataset
-isf_dataset = broken_dataset.copy()
-# initializing Isolation Forest
-clf = IsolationForest(max_samples='auto', contamination=0.01)
-# training
-clf.fit(isf_dataset)
-# finding anomalies
-isf_dataset['Anomaly'] = clf.predict(isf_dataset)
-# saving anomalies to a separate dataset for visualization purposes
-anomalies = isf_dataset.query('Anomaly == -1')
+import numpy as np
 
-import plotly.graph_objects as go
-b1 = go.Scatter(x=isf_dataset.index.astype(str),
-                y=isf_dataset['Sales'],
-                name="Dataset",
-                mode='markers'
-               )
-b2 = go.Scatter(x=anomalies.index.astype(str),
-                y=anomalies['Sales'],
-                name="Anomalies",
-                mode='markers',
-                marker=dict(color='red', size=6,
-                            line=dict(color='red', width=1))
-               )
-layout = go.Layout(
-    title="Isolation Forest results",
-    yaxis_title='Sales',
-    xaxis_title='Date',
-    hovermode='closest'
+from sklearn.model_selection import train_test_split
+
+n_samples, n_outliers = 120, 40
+rng = np.random.RandomState(0)
+covariance = np.array([[0.5, -0.1], [0.7, 0.4]])
+cluster_1 = 0.4 * rng.randn(n_samples, 2) @ covariance + np.array([2, 2])  # general
+cluster_2 = 0.3 * rng.randn(n_samples, 2) + np.array([-2, -2])  # spherical
+outliers = rng.uniform(low=-4, high=4, size=(n_outliers, 2))
+
+X = np.concatenate([cluster_1, cluster_2, outliers])
+y = np.concatenate(
+    [np.ones((2 * n_samples), dtype=int), -np.ones((n_outliers), dtype=int)]
 )
-data = [b1, b2]
-fig = go.Figure(data=data, layout=layout)
-fig.show()
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, random_state=42)
+
+import matplotlib.pyplot as plt
+
+scatter = plt.scatter(X[:, 0], X[:, 1], c=y, s=20, edgecolor="k")
+handles, labels = scatter.legend_elements()
+plt.axis("square")
+plt.legend(handles=handles, labels=["outliers", "inliers"], title="true class")
+plt.title("Gaussian inliers with \nuniformly distributed outliers")
+plt.show()
 ```
 
 ## Conclusion
