@@ -249,3 +249,5 @@ As you can see, our model has performed well, and we can still improve this by s
 In this blog post, we've explored the basics of probability theory and random variables and the workings of Naive Bayes using a practical example. We started with dataset creation, splitting it into training and testing sets, training a Naive Bayes model, making predictions, and evaluating the model's performance.
 
 Naive Bayes is a powerful algorithm, particularly useful for classification tasks, and its simplicity and efficiency make it a popular choice in various machine learning applications. Feel free to experiment with different datasets and see how Naive Bayes performs in different scenarios.
+
+**Source Code:** [https://github.com/Sushmadeegoju/MachineLearning](https://github.com/Sushmadeegoju/MachineLearning)

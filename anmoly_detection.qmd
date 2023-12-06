@@ -53,9 +53,7 @@ Here are just a few areas where anomaly detection flexes its muscles:
 
 ## Anamoly Detection with Example
 
-It is challenging to find data anomalies, especially when dealing with large datasets. Fortunately, the sklearn Python module has many built-in algorithms to help us solve this problem, such as Isolation Forests. Isolation Forest is an unsupervised learning algorithm that identifies anomalies by isolating outliers in the data based on the Decision Tree Algorithm. It separates the outliers by randomly selecting a feature from the given set of features and then selecting a split value between the max and min values. This random partitioning of features will produce shorter paths in trees for the anomalous data points, thus distinguishing them from the rest of the data.
-
-Let’s use the sklearn Isolation Forest implementation on the same broken dataset to implement anomaly detection with PythonLets consider 
+Detecting anomalies in large datasets can be a formidable task, but thankfully, the Python module sklearn provides effective solutions, including the Isolation Forest algorithm. Isolation Forest is a powerful unsupervised learning technique specifically designed for anomaly detection. It leverages the Decision Tree Algorithm to isolate outliers by randomly selecting features and determining split values between the maximum and minimum values. This randomized partitioning results in shorter paths in trees for anomalous data points, effectively distinguishing them from the rest of the dataset. To illustrate the application of Isolation Forest, let's use the sklearn implementation on a given dataset, showcasing how Python can be employed for seamless anomaly detection. 
 
 ```{python, fig.cap="Caption for the Plot", out.width="100%", fig.show='hold'}
 # importing the isloation forest
@@ -94,3 +92,5 @@ Finally, anomaly detection shines by harnessing the power of machine learning to
  But the journey doesn't end here. As data volumes explode and patterns become increasingly complex, the quest for ever-more sophisticated anomaly detection methods continues. Time-series data demands specialized techniques like ARIMA and LSTMs, while deep learning models push the boundaries of what's possible.
 
  So, embrace the anomaly, delve into its mysteries, and unlock the hidden potential it holds. The future of anomaly detection is bright, and it's a future where your insights can make a real difference.
+
+ **Source Code:** [https://github.com/Sushmadeegoju/MachineLearning](https://github.com/Sushmadeegoju/MachineLearning)

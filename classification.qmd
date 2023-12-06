@@ -125,3 +125,5 @@ Classification algorithms are the workhorses of machine learning, powering a vas
 9. Risk assessment: Insurance companies use classification to assess risks and determine premiums. By analyzing factors like age, health data, and driving history, algorithms can predict the likelihood of claims, enabling fairer and more personalized insurance plans.
 
 10. Anomaly detection: From monitoring industrial machinery for potential failures to identifying network intrusions, classification algorithms can learn what's "normal" and detect deviations that might indicate anomalies or security threats.
+
+**Source Code:** [https://github.com/Sushmadeegoju/MachineLearning](https://github.com/Sushmadeegoju/MachineLearning)

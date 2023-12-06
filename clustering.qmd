@@ -15,7 +15,6 @@ This is a kind of unsupervised learning, that do not need labeled data, which is
 
 - What is Clustering?
 - Types of Clustering
-1. Connectivity-based Clustering (Hierarchical Clustering)
 - Essential Clustering Algorithms
 
 ## What is Clustering?
@@ -118,6 +117,8 @@ plt.scatter(centroids_x, centroids_y, marker='D', s=50, color='red')
 plt.show()
 ```
 
+The scatter plot above shows the data points from the Iris dataset, with different colors indicating the clusters assigned by the k-means algorithm.
+The diamond-shaped red markers represent the cluster centers. The algorithm tries to group similar data points together, and the red markers indicate the centroids around which the clusters are formed.
 
 ### DBSCAN
 
@@ -162,3 +163,5 @@ plt.show()
 ```
 
 The resulting visualization helps us to understand the natural groupings within the data, revealing patterns that may not be immediately apparent.
+
+ **Source Code:** [https://github.com/Sushmadeegoju/MachineLearning](https://github.com/Sushmadeegoju/MachineLearning)

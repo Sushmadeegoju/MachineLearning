@@ -134,8 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="anamoly-detection-with-example" class="level2">
 <h2 class="anchored" data-anchor-id="anamoly-detection-with-example">Anamoly Detection with Example</h2>
-<p>It is challenging to find data anomalies, especially when dealing with large datasets. Fortunately, the sklearn Python module has many built-in algorithms to help us solve this problem, such as Isolation Forests. Isolation Forest is an unsupervised learning algorithm that identifies anomalies by isolating outliers in the data based on the Decision Tree Algorithm. It separates the outliers by randomly selecting a feature from the given set of features and then selecting a split value between the max and min values. This random partitioning of features will produce shorter paths in trees for the anomalous data points, thus distinguishing them from the rest of the data.</p>
-<p>Let’s use the sklearn Isolation Forest implementation on the same broken dataset to implement anomaly detection with PythonLets consider</p>
+<p>Detecting anomalies in large datasets can be a formidable task, but thankfully, the Python module sklearn provides effective solutions, including the Isolation Forest algorithm. Isolation Forest is a powerful unsupervised learning technique specifically designed for anomaly detection. It leverages the Decision Tree Algorithm to isolate outliers by randomly selecting features and determining split values between the maximum and minimum values. This randomized partitioning results in shorter paths in trees for anomalous data points, effectively distinguishing them from the rest of the dataset. To illustrate the application of Isolation Forest, let’s use the sklearn implementation on a given dataset, showcasing how Python can be employed for seamless anomaly detection.</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># importing the isloation forest</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -163,41 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"square"</span>)</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.legend(handles<span class="op">=</span>handles, labels<span class="op">=</span>[<span class="st">"outliers"</span>, <span class="st">"inliers"</span>], title<span class="op">=</span><span class="st">"true class"</span>)</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Gaussian inliers with </span><span class="ch">\n</span><span class="st">uniformly distributed outliers"</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># from sklearn.ensemble import IsolationForest</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># # copying dataset</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># isf_dataset = broken_dataset.copy()</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># # initializing Isolation Forest</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># clf = IsolationForest(max_samples='auto', contamination=0.01)</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># # training</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># clf.fit(isf_dataset)</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># # finding anomalies</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># isf_dataset['Anomaly'] = clf.predict(isf_dataset)</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># # saving anomalies to a separate dataset for visualization purposes</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># anomalies = isf_dataset.query('Anomaly == -1')</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co"># import plotly.graph_objects as go</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># b1 = go.Scatter(x=isf_dataset.index.astype(str),</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co">#                 y=isf_dataset['Sales'],</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co">#                 name="Dataset",</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co">#                 mode='markers'</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">#                )</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># b2 = go.Scatter(x=anomalies.index.astype(str),</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co">#                 y=anomalies['Sales'],</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co">#                 name="Anomalies",</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co">#                 mode='markers',</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co">#                 marker=dict(color='red', size=6,</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co">#                             line=dict(color='red', width=1))</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co">#                )</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co"># layout = go.Layout(</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co">#     title="Isolation Forest results",</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co">#     yaxis_title='Sales',</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co">#     xaxis_title='Date',</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co">#     hovermode='closest'</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="co"># data = [b1, b2]</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co"># fig = go.Figure(data=data, layout=layout)</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co"># fig.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="anmoly_detection_files/figure-html/cell-2-output-1.png" width="418" height="449"></p>
 </div>
@@ -208,6 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Finally, anomaly detection shines by harnessing the power of machine learning to unearth the hidden stories within data. Whether it’s uncovering fraudulent transactions, predicting equipment failures, or even detecting rare diseases, its applications span countless fields. Both supervised and unsupervised learning methods play a crucial role, with Isolation Forests excelling at isolating individual outliers and One-Class SVMs adept at identifying patterns deviating from normality. Autoencoders and Gaussian Mixture Models also join the arsenal, each with its own strengths in revealing hidden anomalies. Statistical methods and rule-based approaches offer valuable tools as well, showcasing the versatility of anomaly detection.</p>
 <p>But the journey doesn’t end here. As data volumes explode and patterns become increasingly complex, the quest for ever-more sophisticated anomaly detection methods continues. Time-series data demands specialized techniques like ARIMA and LSTMs, while deep learning models push the boundaries of what’s possible.</p>
 <p>So, embrace the anomaly, delve into its mysteries, and unlock the hidden potential it holds. The future of anomaly detection is bright, and it’s a future where your insights can make a real difference.</p>
+<p><strong>Source Code:</strong> <a href="https://github.com/Sushmadeegoju/MachineLearning">https://github.com/Sushmadeegoju/MachineLearning</a></p>
 </section>
 </section>
 
